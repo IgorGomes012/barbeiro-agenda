@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const HeaderPage = styled.div`
-  height: 100px;
+export const HeaderPage = styled.div` 
+  background-color: red;
+`;
+export const HeaderText = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid white;
+  justify-content: space-between;
 `;
