@@ -1,10 +1,13 @@
+"use client"
+
+import Banner from './components/Banner'
 import Headerr from './components/header'
-import styles from './page.module.css'
 
 export default function Home() {
   return (
-    <main>
-      <h1>oi</h1>
-    </main>
+    <>
+      <Headerr />
+      <Banner />
+    </>
   )
 }
