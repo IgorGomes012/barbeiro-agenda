@@ -12,6 +12,7 @@ export default function Home() {
       <Banner />
       <Schedule />
       <Services />
+      test
     </>
   );
 }
