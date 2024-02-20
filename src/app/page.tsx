@@ -1,6 +1,7 @@
 "use client";
 
 import Banner from "./components/Banner";
+import Footer from "./components/Footer";
 import Schedule from "./components/Schedule";
 import Services from "./components/WorkServices";
 import Headerr from "./components/header";
@@ -13,6 +14,7 @@ export default function Home() {
       <Banner />
       <Schedule />
       <Services />
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,9 +1,11 @@
 import Image from "next/image";
+import { ContainerFooter } from "./style";
 
 export default function Footer() {
   return (
-    <>
-      alo
-    </>
+    <ContainerFooter>
+      whatsapp
+      instagram
+    </ContainerFooter>
   );
 }
