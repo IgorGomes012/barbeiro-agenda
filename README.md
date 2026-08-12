@@ -1,34 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Barbearia Agenda
 
-## Getting Started
+Sistema web desenvolvido para gerenciamento e agendamento de serviços de uma barbearia.
 
-First, run the development server:
+O projeto foi criado com foco em praticar e aplicar conceitos de desenvolvimento Front-end utilizando Next.js, React e TypeScript, trabalhando com componentes reutilizáveis, organização de interface e experiência do usuário.
 
-```bash
+🚀 Tecnologias
+
+* Next.js
+* React.js
+* TypeScript
+* Styled Components
+* Material UI
+* HTML
+* CSS
+* Git & GitHub
+
+💻 Funcionalidades
+
+O projeto tem como objetivo oferecer uma interface para gerenciamento de agendamentos de uma barbearia, permitindo organizar informações relacionadas aos atendimentos de forma simples e intuitiva.
+
+Entre os conceitos aplicados estão:
+
+* Criação de componentes reutilizáveis
+* Desenvolvimento de interfaces com React
+* Tipagem com TypeScript
+* Estilização com Styled Components e Material UI
+* Organização de páginas utilizando Next.js
+* Layout responsivo
+
+📚 Objetivo do projeto
+
+Este projeto faz parte do meu portfólio de desenvolvimento Front-end e foi desenvolvido para aprofundar meus conhecimentos no ecossistema React + Next.js + TypeScript.
+
+▶️ Como executar
+
+Clone o repositório:
+
+git clone https://github.com/IgorGomes012/barbeiro-agenda.git
+
+Entre na pasta:
+
+cd barbeiro-agenda
+
+Instale as dependências:
+
+npm install
+
+Execute o projeto:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+👨‍💻 Autor
 
-## Learn More
+Igor Gomes
 
-To learn more about Next.js, take a look at the following resources:
+Desenvolvedor Front-end
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+GitHub: https://github.com/IgorGomes012
