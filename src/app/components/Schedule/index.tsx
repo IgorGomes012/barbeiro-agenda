@@ -33,6 +33,18 @@ export default function Schedule() {
     );
   }
 
+  function getTodayDate() {
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
+
+  const today = getTodayDate();
+
   return (
     <ScheduleContainer>
       <ScheduleTitle>Agende seu horário</ScheduleTitle>
@@ -62,26 +74,34 @@ export default function Schedule() {
           <input
             id="date"
             type="date"
+            min={today}
             value={date}
-            onChange={(event) => setDate(event.target.value)}
+            onChange={(event) => {
+              setDate(event.target.value);
+              setTime("");
+            }}
           />
         </FormGroup>
 
         <FormGroup>
           <label>Horário</label>
 
-          <TimeGrid>
-            {times.map((availableTime) => (
-              <TimeButton
-                key={availableTime}
-                type="button"
-                $selected={time === availableTime}
-                onClick={() => setTime(availableTime)}
-              >
-                {availableTime}
-              </TimeButton>
-            ))}
-          </TimeGrid>
+          {date ? (
+            <TimeGrid>
+              {times.map((availableTime) => (
+                <TimeButton
+                  key={availableTime}
+                  type="button"
+                  $selected={time === availableTime}
+                  onClick={() => setTime(availableTime)}
+                >
+                  {availableTime}
+                </TimeButton>
+              ))}
+            </TimeGrid>
+          ) : (
+            <p>Selecione uma data para visualizar os horários.</p>
+          )}
         </FormGroup>
 
         <SubmitButton type="submit">Confirmar agendamento</SubmitButton>
