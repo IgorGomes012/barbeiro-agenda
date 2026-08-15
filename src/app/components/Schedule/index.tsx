@@ -58,7 +58,7 @@ export default function Schedule() {
             value={service}
             onChange={(event) => setService(event.target.value)}
           >
-            <option value="">Selecione um serviço</option>
+            <option value="">Selecione um serviçoo</option>
 
             {services.map((service) => (
               <option key={service} value={service}>
