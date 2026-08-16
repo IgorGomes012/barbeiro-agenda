@@ -47,7 +47,7 @@ export default function Schedule() {
 
   return (
     <ScheduleContainer>
-      <ScheduleTitle>Agende seu horário</ScheduleTitle>
+      <ScheduleTitle>Agende seu horárioo</ScheduleTitle>
 
       <ScheduleForm onSubmit={handleSubmit}>
         <FormGroup>
