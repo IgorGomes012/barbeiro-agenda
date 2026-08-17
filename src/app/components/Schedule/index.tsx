@@ -19,18 +19,42 @@ export default function Schedule() {
   const [service, setService] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [clientName, setClientName] = useState("");
+  const [clientNumber, setClientNumber] = useState("");
+
+  interface Appointment {
+    clientName: string;
+    clientNumber: string;
+    service: string;
+    date: string;
+    time: string;
+  }
+
+  const appointment: Appointment = {
+    clientName,
+    clientNumber,
+    service,
+    date,
+    time,
+  };
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!service || !date || !time) {
+    if (!service || !date || !time || !clientName || !clientNumber) {
       alert("Preencha todos os campos.");
       return;
     }
 
     alert(
-      `Agendamento realizado!\n\nServiço: ${service}\nData: ${date}\nHorário: ${time}`,
+      `Agendamento realizado!\n\nNome: ${clientName} \nTelefone: ${clientNumber} \nServiço: ${service}\nData: ${date}\nHorário: ${time}`,
     );
+
+    setClientName("");
+    setClientNumber("");
+    setService("");
+    setDate("");
+    setTime("");
   }
 
   function getTodayDate() {
@@ -50,6 +74,24 @@ export default function Schedule() {
       <ScheduleTitle>Agende seu horárioo</ScheduleTitle>
 
       <ScheduleForm onSubmit={handleSubmit}>
+        <FormGroup>
+          <label htmlFor="clientName">Nome do cliente</label>
+          <input
+            id="clientName"
+            type="text"
+            value={clientName}
+            onChange={(event) => setClientName(event.target.value)}
+          />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="clientNumber">Número do cliente</label>
+          <input
+            id="clientNumber"
+            type="tel"
+            value={clientNumber}
+            onChange={(event) => setClientNumber(event.target.value)}
+          />
+        </FormGroup>
         <FormGroup>
           <label htmlFor="service">Serviço</label>
 
@@ -103,7 +145,6 @@ export default function Schedule() {
             <p>Selecione uma data para visualizar os horários.</p>
           )}
         </FormGroup>
-
         <SubmitButton type="submit">Confirmar agendamento</SubmitButton>
       </ScheduleForm>
     </ScheduleContainer>
