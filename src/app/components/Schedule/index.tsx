@@ -10,6 +10,8 @@ import {
   TimeButton,
   TimeGrid,
 } from "./style";
+import type { Appointment } from "./types";
+import { AppointmentList } from "../AppointmentList";
 
 const services = ["Corte de cabelo", "Barba", "Corte + Barba"];
 
@@ -22,15 +24,6 @@ export default function Schedule() {
   const [clientName, setClientName] = useState("");
   const [clientNumber, setClientNumber] = useState("");
 
-  interface Appointment {
-    id: string;
-    clientName: string;
-    clientNumber: string;
-    service: string;
-    date: string;
-    time: string;
-  }
-
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -38,6 +31,15 @@ export default function Schedule() {
 
     if (!service || !date || !time || !clientName || !clientNumber) {
       alert("Preencha todos os campos.");
+      return;
+    }
+
+    const isTimeOccupied = appointments.some(
+      (appointment) => appointment.date === date && appointment.time === time,
+    );
+
+    if (isTimeOccupied) {
+      alert("Horario ja ocupado");
       return;
     }
 
@@ -87,19 +89,6 @@ export default function Schedule() {
   return (
     <ScheduleContainer>
       <ScheduleTitle>Agende seu horário</ScheduleTitle>
-
-      {appointments.map((appointment) => (
-        <div key={appointment.id}>
-          <h3>{appointment.clientName}</h3>
-          <p>{appointment.service}</p>
-          <p>{appointment.date}</p>
-          <p>{appointment.time}</p>
-          <button onClick={() => handleDeleteAppointment(appointment.id)}>
-            Cancelar
-          </button>
-        </div>
-      ))}
-
       <ScheduleForm onSubmit={handleSubmit}>
         <FormGroup>
           <label htmlFor="clientName">Nome do cliente</label>
@@ -171,6 +160,10 @@ export default function Schedule() {
           )}
         </FormGroup>
         <SubmitButton type="submit">Confirmar agendamento</SubmitButton>
+        <AppointmentList
+          appointments={appointments}
+          onDelete={handleDeleteAppointment}
+        />
       </ScheduleForm>
     </ScheduleContainer>
   );
