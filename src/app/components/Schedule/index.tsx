@@ -23,6 +23,7 @@ export default function Schedule() {
   const [clientNumber, setClientNumber] = useState("");
 
   interface Appointment {
+    id: string;
     clientName: string;
     clientNumber: string;
     service: string;
@@ -30,13 +31,7 @@ export default function Schedule() {
     time: string;
   }
 
-  const appointment: Appointment = {
-    clientName,
-    clientNumber,
-    service,
-    date,
-    time,
-  };
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -46,9 +41,23 @@ export default function Schedule() {
       return;
     }
 
+    const appointment: Appointment = {
+      id: crypto.randomUUID(),
+      clientName,
+      clientNumber,
+      service,
+      date,
+      time,
+    };
+
     alert(
       `Agendamento realizado!\n\nNome: ${clientName} \nTelefone: ${clientNumber} \nServiço: ${service}\nData: ${date}\nHorário: ${time}`,
     );
+
+    setAppointments((previousAppointments) => [
+      ...previousAppointments,
+      appointment,
+    ]);
 
     setClientName("");
     setClientNumber("");
@@ -69,9 +78,27 @@ export default function Schedule() {
 
   const today = getTodayDate();
 
+  function handleDeleteAppointment(id: string) {
+    setAppointments((previousAppointments) =>
+      previousAppointments.filter((appointment) => appointment.id !== id),
+    );
+  }
+
   return (
     <ScheduleContainer>
-      <ScheduleTitle>Agende seu horárioo</ScheduleTitle>
+      <ScheduleTitle>Agende seu horário</ScheduleTitle>
+
+      {appointments.map((appointment) => (
+        <div key={appointment.id}>
+          <h3>{appointment.clientName}</h3>
+          <p>{appointment.service}</p>
+          <p>{appointment.date}</p>
+          <p>{appointment.time}</p>
+          <button onClick={() => handleDeleteAppointment(appointment.id)}>
+            Cancelar
+          </button>
+        </div>
+      ))}
 
       <ScheduleForm onSubmit={handleSubmit}>
         <FormGroup>
@@ -100,7 +127,7 @@ export default function Schedule() {
             value={service}
             onChange={(event) => setService(event.target.value)}
           >
-            <option value="">Selecione um serviçoo</option>
+            <option value="">Selecione um serviço</option>
 
             {services.map((service) => (
               <option key={service} value={service}>
@@ -109,7 +136,6 @@ export default function Schedule() {
             ))}
           </select>
         </FormGroup>
-
         <FormGroup>
           <label htmlFor="date">Data</label>
 
@@ -124,7 +150,6 @@ export default function Schedule() {
             }}
           />
         </FormGroup>
-
         <FormGroup>
           <label>Horário</label>
 
