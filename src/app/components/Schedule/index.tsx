@@ -144,16 +144,26 @@ export default function Schedule() {
 
           {date ? (
             <TimeGrid>
-              {times.map((availableTime) => (
-                <TimeButton
-                  key={availableTime}
-                  type="button"
-                  $selected={time === availableTime}
-                  onClick={() => setTime(availableTime)}
-                >
-                  {availableTime}
-                </TimeButton>
-              ))}
+              {times.map((availableTime) => {
+                const isOccupied = appointments.some(
+                  (appointment) =>
+                    appointment.date === date &&
+                    appointment.time === availableTime,
+                );
+
+                return (
+                  <TimeButton
+                    $isOccupied={isOccupied}
+                    key={availableTime}
+                    type="button"
+                    disabled={isOccupied}
+                    $selected={time === availableTime}
+                    onClick={() => setTime(availableTime)}
+                  >
+                    {availableTime}
+                  </TimeButton>
+                );
+              })}
             </TimeGrid>
           ) : (
             <p>Selecione uma data para visualizar os horários.</p>

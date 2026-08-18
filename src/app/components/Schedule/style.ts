@@ -8,6 +8,7 @@ export const TimeGrid = styled.div`
 
 interface TimeButtonProps {
   $selected: boolean;
+  $isOccupied: boolean;
 }
 
 export const TimeButton = styled.button<TimeButtonProps>`
@@ -25,9 +26,13 @@ export const TimeButton = styled.button<TimeButtonProps>`
 
   font-size: ${({ theme }) => theme.fontSizes.medium};
 
+  cursor: ${({ $isOccupied }) => ($isOccupied ? "not-allowed" : "pointer")};
+
+  opacity: ${({ $isOccupied }) => ($isOccupied ? 0.4 : 1)};
+
   transition: 0.2s;
 
-  &:hover {
+  &:not(:disabled):hover {
     background: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.textLight};
   }
