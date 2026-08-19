@@ -140,7 +140,7 @@ export default function Schedule() {
           />
         </FormGroup>
         <FormGroup>
-          <label>Horário</label>
+          <label>Horárioo</label>
 
           {date ? (
             <TimeGrid>
