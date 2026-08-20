@@ -12,6 +12,7 @@ import {
 } from "./style";
 import type { Appointment } from "./types";
 import { AppointmentList } from "../AppointmentList";
+import { useAppointments } from "../../../contexts/AppointmentContext";
 
 const services = ["Corte de cabelo", "Barba", "Corte + Barba"];
 
@@ -24,7 +25,7 @@ export default function Schedule() {
   const [clientName, setClientName] = useState("");
   const [clientNumber, setClientNumber] = useState("");
 
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const { appointments, addAppointment, deleteAppointment } = useAppointments();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -56,10 +57,7 @@ export default function Schedule() {
       `Agendamento realizado!\n\nNome: ${clientName} \nTelefone: ${clientNumber} \nServiço: ${service}\nData: ${date}\nHorário: ${time}`,
     );
 
-    setAppointments((previousAppointments) => [
-      ...previousAppointments,
-      appointment,
-    ]);
+    addAppointment(appointment);
 
     setClientName("");
     setClientNumber("");
@@ -79,12 +77,6 @@ export default function Schedule() {
   }
 
   const today = getTodayDate();
-
-  function handleDeleteAppointment(id: string) {
-    setAppointments((previousAppointments) =>
-      previousAppointments.filter((appointment) => appointment.id !== id),
-    );
-  }
 
   return (
     <ScheduleContainer>
@@ -172,7 +164,7 @@ export default function Schedule() {
         <SubmitButton type="submit">Confirmar agendamento</SubmitButton>
         <AppointmentList
           appointments={appointments}
-          onDelete={handleDeleteAppointment}
+          onDelete={deleteAppointment}
         />
       </ScheduleForm>
     </ScheduleContainer>
