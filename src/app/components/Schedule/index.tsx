@@ -101,7 +101,7 @@ export default function Schedule() {
           />
         </FormGroup>
         <FormGroup>
-          <label htmlFor="service">Serviço</label>
+          <label htmlFor="service">Serviçoo</label>
 
           <select
             id="service"
